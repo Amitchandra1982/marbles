@@ -185,12 +185,16 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 // Query - Our entry point for Queries
 // ============================================================================================================================
 func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+
+    fmt.Println("Inside Query function")
+	
 	fmt.Println("query is running " + function)
 
 	// Handle different functions
 	if function == "read" {													//read a variable
 		return t.read(stub, args)
-	} else if function == "read_sysadmin" {									//Read system admin User id and password
+	} else if function == "read_sysadmin" {			//Read system admin User id and password
+	    fmt.Println("read sysdmin condition is working")
 		return t.read_sysadmin(stub, args)
 	} 
 	fmt.Println("query did not find func: " + function)						//error
@@ -224,8 +228,10 @@ func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) 
 //===============================================================================================================================
 func (t *SimpleChaincode) read_sysadmin(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
+	fmt.Println("Inside read_sysadmin method")
 
 	if len(args) != 1 {
+	    fmt.Println("inside read_sysadmin method-len(arg)")
 		return nil, errors.New("Incorrect number of arguments. Expecting name of the key to query")
 	}
 
