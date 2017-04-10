@@ -230,10 +230,10 @@ func (t *SimpleChaincode) sysadmin(stub shim.ChaincodeStubInterface, args []stri
 	var err error
 	fmt.Println("Inside sysadmin method")
 
-	if len(args) != 1 {
-	    fmt.Println("inside sysadmin method-len(arg)")
-		return nil, errors.New("Incorrect number of arguments. Expecting name of the key to query")
-	}
+	//if len(args) != 1 {
+	//    fmt.Println("inside sysadmin method-len(arg)")
+	//	return nil, errors.New("Incorrect number of arguments. Expecting name of the key to query")
+	//}
 
 	userid := args[0]
 	password := args[1]
