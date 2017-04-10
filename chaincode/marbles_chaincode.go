@@ -236,6 +236,10 @@ func (t *SimpleChaincode) sysadmin(stub shim.ChaincodeStubInterface, args []stri
 	}
 
 	userid := args[0]
+	password := args[1]
+	fmt.Println("Sysadmin User id: " + args[0])
+	fmt.Println("Sysadmin Password: " + args[1])
+	
 	PassAsbytes, err := stub.GetState(userid)
 	
 	if err != nil {
@@ -246,11 +250,14 @@ func (t *SimpleChaincode) sysadmin(stub shim.ChaincodeStubInterface, args []stri
 	res := Adminlogin{}
 	json.Unmarshal(PassAsbytes,&res)
 	
-	if res.Userid == userid{
+	if (res.Userid == userid && res.Password ==password){
 	   fmt.Println("Userid Password Matched: " +res.Userid + res.Password)
 	  }else {
 	   fmt.Println("Wrong ID Password: " +res.Userid + res.Password)
 	   }
+	   
+	str := fmt.Sprintf("%s", PassAsbytes) 
+	fmt.Println("Value of STR pass bytes: " +str)
 	
 	return PassAsbytes, nil
 }
