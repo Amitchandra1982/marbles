@@ -282,7 +282,7 @@ func (t *SimpleChaincode) init_marble(stub shim.ChaincodeStubInterface, args []s
 	if len(args) != 4 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 4")
 	}
-
+    fmt.Println("-Amit C code-Init_marble driver")
 	//input sanitation
 	fmt.Println("- start init marble")
 	if len(args[0]) <= 0 {
@@ -358,7 +358,7 @@ func (t *SimpleChaincode) signup_driver(stub shim.ChaincodeStubInterface, args [
 
 	//input sanitation
 	fmt.Println("- start signup driver")
-	fmt.Println("Code changes by Amit C")
+	fmt.Println("-Amit C code-signup driver")
 	if len(args[0]) <= 0 {
 		return nil, errors.New("1st argument must be a non-empty string")
 	}
