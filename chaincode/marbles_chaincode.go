@@ -279,10 +279,12 @@ func (t *SimpleChaincode) init_marble(stub shim.ChaincodeStubInterface, args []s
 
 	//   0       1       2     3
 	// "asdf", "blue", "35", "bob"
-	if len(args) != 8 {
+	if len(args) != 4 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 4")
 	}
+	
     fmt.Println("-Amit C code-Init_marble driver")
+	
 	//input sanitation
 	fmt.Println("- start init marble")
 	if len(args[0]) <= 0 {
@@ -352,7 +354,7 @@ func (t *SimpleChaincode) signup_driver(stub shim.ChaincodeStubInterface, args [
 
 	//   0       1       			2						 3
 	// "Mainak", "Mandal", "mainakmandal@hotmail.com", "password"
-	if len(args) != 4 {
+	if len(args) != 8 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 4")
 	}
 
