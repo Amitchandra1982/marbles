@@ -358,6 +358,7 @@ func (t *SimpleChaincode) signup_driver(stub shim.ChaincodeStubInterface, args [
 
 	//input sanitation
 	fmt.Println("- start signup driver")
+	fmt.Println("Code changes by Amit C")
 	if len(args[0]) <= 0 {
 		return nil, errors.New("1st argument must be a non-empty string")
 	}
