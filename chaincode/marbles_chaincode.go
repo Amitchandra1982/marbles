@@ -356,7 +356,7 @@ func (t *SimpleChaincode) signup_driver(stub shim.ChaincodeStubInterface, args [
 
 	//   0       1       			2						 3
 	// "Mainak", "Mandal", "mainakmandal@hotmail.com", "password"
-	if len(args) != 8 {
+	if len(args) != 9 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 4")
 	}
 
