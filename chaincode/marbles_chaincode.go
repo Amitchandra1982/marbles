@@ -50,11 +50,11 @@ type Driver struct{
 	LastName string `json:"lastname"`
 	Email string `json:"email"`
 	Password string `json:"password"`
-	Phone string `json:"phone"`
 	Street string `json:"street"`
 	City string `json:"city"`
 	State string `json:"state"`
 	Zip string `json:"zip"`
+	Phone string `json:"phone"`
 	Status string `json:"status"`
 }
 
@@ -395,11 +395,11 @@ func (t *SimpleChaincode) signup_driver(stub shim.ChaincodeStubInterface, args [
 	lastname := strings.ToLower(args[1])
 	email := strings.ToLower(args[2])
 	password := strings.ToLower(args[3])
-	phone :=strings.ToLower(args[4])
-	street := strings.ToLower(args[5])
-	city := strings.ToLower(args[6])
-	state := strings.ToLower(args[7])
-	zip := strings.ToLower(args[8])
+	street := strings.ToLower(args[4])
+	city := strings.ToLower(args[5])
+	state := strings.ToLower(args[6])
+	zip := strings.ToLower(args[7])
+	phone :=strings.ToLower(args[8])
 	status :="P"
 	
 	//if err != nil {
@@ -420,7 +420,7 @@ func (t *SimpleChaincode) signup_driver(stub shim.ChaincodeStubInterface, args [
 	}
 	
 	//build the marble json string manually
-	str := `{"firstname": "` + firstname + `", "lastname": "` + lastname + `", "email": "` + email + `", "password": "` + password + `","phone": "` + phone + `","street": "` + street + `","city": "` + city + `","state": "` + state + `","zip": "` + zip + `","status": "` + status + `"}`
+	str := `{"firstname": "` + firstname + `", "lastname": "` + lastname + `", "email": "` + email + `", "password": "` + password + `","street": "` + street + `","city": "` + city + `","state": "` + state + `","zip": "` + zip + `","phone": "` + phone + `","status": "` + status + `"}`
 	err = stub.PutState(email, []byte(str))									//store marble with id as key
 	if err != nil {
 		return nil, err
