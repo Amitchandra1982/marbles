@@ -56,7 +56,7 @@ type Driver struct{
 	Adminemail string `json:"adminemail"`
 	Rejectreason string `json:"rejectreason"`
 	Anycomment string `json:"anycomment"`
-	BookID     string `json:"bookingid"`
+	Bookingid     string `json:"bookingid"`
 }
 
 type Bookcar struct{
@@ -528,18 +528,18 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	}
 	
 	//-------------For updating the Driver Detail with Booking ID---------------
-	driverAsBytes, err := stub.GetState(args[1])
-	if err != nil {
-		return nil, errors.New("Failed to get driver name")
-	}
-	res := Driver{}
-	json.Unmarshal(driverAsBytes, &res) 
-	res.BookID=args[9]
-	jsonAsBytes, _ := json.Marshal(res)
-	err = stub.PutState(args[1], jsonAsBytes)
-	if err != nil {
-		return nil, err
-	}
+	//driverAsBytes, err := stub.GetState(args[1])
+	//if err != nil {
+	//	return nil, errors.New("Failed to get driver name")
+	//}
+	//res := Driver{}
+	//json.Unmarshal(driverAsBytes, &res) 
+	//res.BookID=args[9]
+	//jsonAsBytes, _ := json.Marshal(res)
+	//err = stub.PutState(args[1], jsonAsBytes)
+	//if err != nil {
+	//	return nil, err
+	//}
 
 	//--------------------------------------------------------
 		
