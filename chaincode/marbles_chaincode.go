@@ -549,20 +549,24 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	 }
 	 res := Driver{}
 	 json.Unmarshal(driverAsBytes, &res)//un stringify it aka JSON.parse()
-	 res.Name = res.Name	 //change the user
-	 res.DL = res.DL
-	 res.DOB = res.DOB
-	 res.Mobile = res.Mobile
-	 res.Password = res.Password 
-	 res.Address = res.Address
-	 res.Status =  res.Status
-	 res.Modifyby = res.Modifyby
-	 res.Adminemail  = res.Adminemail
-	 res.Rejectreason   = res.Rejectreason
-	 res.Anycomment   = res.Anycomment
-	 res.Bookingid = args[9]														//change the user
+	
+	 name := res.Name	 //change the user
+	 email := res.Email
+	 dl := res.DL
+	 dob :=  res.DOB
+	 mobile :=   res.Mobile
+	 password :=  res.Password 
+	 address :=  res.Address
+	 status :=   res.Status
+	 modifyby :=  res.Modifyby
+	 adminemail :=  res.Adminemail
+	 rejectreason :=  res.Rejectreason
+	 anycomment :=  res.Anycomment
+	 res.Bookingid = args[9]
+	
  	jsonAsBytes, _ := json.Marshal(res)
- 	err = stub.PutState(args[0], jsonAsBytes)								//rewrite the marble with id as key
+	str := `{"name": "` + name + `", "dl": "` + dl + `", "dob": "` + dob + `", "email": "` + email + `",  "mobile": "` + mobile + `", "password": "` + password + `","address": "` + address + `","status": "` + status + `","modifyby": "` + modifyby + `" ,"adminemail": "` + adminemail + `" ,"rejectreason": "` + rejectreason + `" ,"anycomment": "` + anycomment + `","Bookingid": "` + bookingid + `"}`
+ 	err = stub.PutState(email, []byte(str))									//rewrite the marble with id as key
 	if err != nil {
 		return nil, err
 	}
