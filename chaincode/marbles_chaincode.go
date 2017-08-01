@@ -545,10 +545,10 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	
 	 //fmt.Println("- start set Booking ID with Mail Id")
 	 //fmt.Println(args[0] + " - " + args[1])
-	 driverAsBytes, err := stub.GetState(emailid)
- 	if err != nil {
-	 	return nil, errors.New("Failed to get thing")
-	 }
+	 //driverAsBytes, err := stub.GetState(emailid)
+ 	//if err != nil {
+	 //	return nil, errors.New("Failed to get thing")
+	 //}
 	 //res := Driver{}
 	 //json.Unmarshal(driverAsBytes, &res)//un stringify it aka JSON.parse()
 	
