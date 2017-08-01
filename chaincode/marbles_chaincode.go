@@ -488,6 +488,7 @@ func (t *SimpleChaincode) signup_driver(stub shim.ChaincodeStubInterface, args [
 // ============================================================================================================================
 func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
+	var emailid
 
 	//   0       1       			2						 3
 	// "Mainak", "Mandal", "mainakmandal@hotmail.com", "password"
@@ -502,6 +503,7 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	bookacardropoffdate := args[7]
 	bookacardropofftime := args[8]
 	bookingid := args[9]
+	emailid = args[1]
 	
 	//if err != nil {
 		//return nil, errors.New("3rd argument must be a numeric string")
@@ -541,12 +543,12 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	//	return nil, err
 	//}
 	
-	 //fmt.Println("- start set Booking ID with Mail Id")
-	 //fmt.Println(args[0] + " - " + args[1])
-	 //driverAsBytes, err := stub.GetState(args[1])
- 	//if err != nil {
-	 //	return nil, errors.New("Failed to get thing")
-	 //}
+	 fmt.Println("- start set Booking ID with Mail Id")
+	 fmt.Println(args[0] + " - " + args[1])
+	 driverAsBytes, err := stub.GetState(emailid)
+ 	if err != nil {
+	 	return nil, errors.New("Failed to get thing")
+	 }
 	 //res := Driver{}
 	 //json.Unmarshal(driverAsBytes, &res)//un stringify it aka JSON.parse()
 	
