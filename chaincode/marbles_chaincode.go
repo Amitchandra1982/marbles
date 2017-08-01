@@ -547,31 +547,31 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
  	if err != nil {
 	 	return nil, errors.New("Failed to get thing")
 	 }
-	 res := Driver{}
-	 json.Unmarshal(driverAsBytes, &res)//un stringify it aka JSON.parse()
+	 //res := Driver{}
+	 //json.Unmarshal(driverAsBytes, &res)//un stringify it aka JSON.parse()
 	
-	 name := res.Name	 //change the user
-	 email := res.Email
-	 dl := res.DL
-	 dob :=  res.DOB
-	 mobile :=   res.Mobile
-	 password :=  res.Password 
-	 address :=  res.Address
-	 status :=   res.Status
-	 modifyby :=  res.Modifyby
-	 adminemail :=  res.Adminemail
-	 rejectreason :=  res.Rejectreason
-	 anycomment :=  res.Anycomment
-	 res.Bookingid = args[9]
+	 //name := res.Name	 //change the user
+	 //email := res.Email
+	 //dl := res.DL
+	 //dob :=  res.DOB
+	 //mobile :=   res.Mobile
+	 //password :=  res.Password 
+	 //address :=  res.Address
+	 //status :=   res.Status
+	 //modifyby :=  res.Modifyby
+	 //adminemail :=  res.Adminemail
+	 //rejectreason :=  res.Rejectreason
+	 //anycomment :=  res.Anycomment
+	 //res.Bookingid = args[9]
 	
- 	jsonAsBytes, _ := json.Marshal(res)
-	str := `{"name": "` + name + `", "dl": "` + dl + `", "dob": "` + dob + `", "email": "` + email + `",  "mobile": "` + mobile + `", "password": "` + password + `","address": "` + address + `","status": "` + status + `","modifyby": "` + modifyby + `" ,"adminemail": "` + adminemail + `" ,"rejectreason": "` + rejectreason + `" ,"anycomment": "` + anycomment + `","Bookingid": "` + bookingid + `"}`
- 	err = stub.PutState(email, []byte(str))									//rewrite the marble with id as key
-	if err != nil {
-		return nil, err
-	}
+ 	//jsonAsBytes, _ := json.Marshal(res)
+	//str := `{"name": "` + name + `", "dl": "` + dl + `", "dob": "` + dob + `", "email": "` + email + `",  "mobile": "` + mobile + `", "password": "` + password + `","address": "` + address + `","status": "` + status + `","modifyby": "` + modifyby + `" ,"adminemail": "` + adminemail + `" ,"rejectreason": "` + rejectreason + `" ,"anycomment": "` + anycomment + `","Bookingid": "` + bookingid + `"}`
+ 	//err = stub.PutState(email, []byte(str))									//rewrite the marble with id as key
+	//if err != nil {
+	//	return nil, err
+	//}
 	
- 	fmt.Println("- end Booking ID")
+ 	//fmt.Println("- end Booking ID")
 
 	//--------------------------------------------------------
 		
