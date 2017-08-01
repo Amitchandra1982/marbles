@@ -548,9 +548,19 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	 	return nil, errors.New("Failed to get thing")
 	 }
 	 res := Driver{}
-	 json.Unmarshal(marbleAsBytes, &res)										//un stringify it aka JSON.parse()
+	 json.Unmarshal(driverAsBytes, &res)//un stringify it aka JSON.parse()
+	 res.Name = res.Name	 //change the user
+	 res.DL = res.DL
+	 res.DOB = res.DOB
+	 res.Mobile = res.Mobile
+	 res.Password = res.Password 
+	 res.Address = res.Address
+	 res.Status =  res.Status
+	 res.Modifyby = res.Modifyby
+	 res.Adminemail  = res.Adminemail
+	 res.Rejectreason   = res.Rejectreason
+	 res.Anycomment   = res.Anycomment
 	 res.Bookingid = args[9]														//change the user
-	
  	jsonAsBytes, _ := json.Marshal(res)
  	err = stub.PutState(args[0], jsonAsBytes)								//rewrite the marble with id as key
 	if err != nil {
