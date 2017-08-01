@@ -56,7 +56,7 @@ type Driver struct{
 	Adminemail string `json:"adminemail"`
 	Rejectreason string `json:"rejectreason"`
 	Anycomment string `json:"anycomment"`
-	Bookingid     string `json:"bookingid"`
+	Bookingid  string `json:"bookingid"`
 }
 
 type Bookcar struct{
@@ -540,6 +540,24 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	//if err != nil {
 	//	return nil, err
 	//}
+	
+	 fmt.Println("- start set Booking ID with Mail Id")
+	 fmt.Println(args[0] + " - " + args[1])
+	 driverAsBytes, err := stub.GetState(args[1])
+ 	if err != nil {
+	 	return nil, errors.New("Failed to get thing")
+	 }
+	 res := Driver{}
+	 json.Unmarshal(marbleAsBytes, &res)										//un stringify it aka JSON.parse()
+	 res.Bookingid = args[9]														//change the user
+	
+ 	jsonAsBytes, _ := json.Marshal(res)
+ 	err = stub.PutState(args[0], jsonAsBytes)								//rewrite the marble with id as key
+	if err != nil {
+		return nil, err
+	}
+	
+ 	fmt.Println("- end Booking ID")
 
 	//--------------------------------------------------------
 		
