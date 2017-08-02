@@ -488,9 +488,7 @@ func (t *SimpleChaincode) signup_driver(stub shim.ChaincodeStubInterface, args [
 // ============================================================================================================================
 func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
-	var emailid
 	
-
 	//   0       1       			2						 3
 	// "Mainak", "Mandal", "mainakmandal@hotmail.com", "password"
 	
@@ -498,14 +496,12 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	bookacaremail := args[1]
 	bookacarclass := args[2]
 	bookacarlocation := args[3]
-        bookacardroplocation := args[4]
+    bookacardroplocation := args[4]
 	bookacarpickupdate := args[5]
 	bookacarpickuptime := args[6]
 	bookacardropoffdate := args[7]
 	bookacardropofftime := args[8]
-	bookingid := args[9]
-	emailid = args[1]
-	
+	bookingid := args[9]	
 	
 	//if err != nil {
 		//return nil, errors.New("3rd argument must be a numeric string")
@@ -530,55 +526,7 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	if err != nil {
 		return nil, err
 	}
-	
-	//-------------For updating the Driver Detail with Booking ID---------------
-	//driverAsBytes, err := stub.GetState(args[1])
-	//if err != nil {
-	//	return nil, errors.New("Failed to get driver name")
-	//}
-	//res := Driver{}
-	//json.Unmarshal(driverAsBytes, &res) 
-	//res.BookID=args[9]
-	//jsonAsBytes, _ := json.Marshal(res)
-	//err = stub.PutState(args[1], jsonAsBytes)
-	//if err != nil {
-	//	return nil, err
-	//}
-	
-	 //fmt.Println("- start set Booking ID with Mail Id")
-	 //fmt.Println(args[0] + " - " + args[1])
-	 //driverAsBytes, err := stub.GetState(emailid)
- 	//if err != nil {
-	 //	return nil, errors.New("Failed to get thing")
-	 //}
-	 //res := Driver{}
-	 //json.Unmarshal(driverAsBytes, &res)//un stringify it aka JSON.parse()
-	
-	 //name := res.Name	 //change the user
-	 //email := res.Email
-	 //dl := res.DL
-	 //dob :=  res.DOB
-	 //mobile :=   res.Mobile
-	 //password :=  res.Password 
-	 //address :=  res.Address
-	 //status :=   res.Status
-	 //modifyby :=  res.Modifyby
-	 //adminemail :=  res.Adminemail
-	 //rejectreason :=  res.Rejectreason
-	 //anycomment :=  res.Anycomment
-	 //res.Bookingid = args[9]
-	
- 	//jsonAsBytes, _ := json.Marshal(res)
-	//str := `{"name": "` + name + `", "dl": "` + dl + `", "dob": "` + dob + `", "email": "` + email + `",  "mobile": "` + mobile + `", "password": "` + password + `","address": "` + address + `","status": "` + status + `","modifyby": "` + modifyby + `" ,"adminemail": "` + adminemail + `" ,"rejectreason": "` + rejectreason + `" ,"anycomment": "` + anycomment + `","Bookingid": "` + bookingid + `"}`
- 	//err = stub.PutState(email, []byte(str))									//rewrite the marble with id as key
-	//if err != nil {
-	//	return nil, err
-	//}
-	
- 	//fmt.Println("- end Booking ID")
-
-	//--------------------------------------------------------
-		
+	//-----------------------------------------------------
 	//get the driver index
 	driversAsBytes, err := stub.GetState(driverIndexStr)
 	if err != nil {
@@ -590,12 +538,27 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	//append
 	 driverIndex = append(driverIndex, bookingid)									//add marble name to index list
 	 fmt.Println("! driver index: ", driverIndex)
-	 jsonAsBytes, _ := json.Marshal(driverIndex)
-	 err = stub.PutState(driverIndexStr, jsonAsBytes)						//store name of marble
+	 jsonAsBytes1, _ := json.Marshal(driverIndex)
+	 err = stub.PutState(driverIndexStr, jsonAsBytes1)						//store name of marble
 
+	
+    
+	//++++++++Boooking id for driver details
+	driverAsBytes, err := stub.GetState(args[1])
+	if err != nil {
+		return nil, errors.New("Failed to get driver name")
+	}
+	res := Driver{}
+	json.Unmarshal(driverAsBytes, &res)
+	res.Bookingid = args[9]	 //change the user
+ 	jsonAsBytes, _ := json.Marshal(res)
+ 	err = stub.PutState(args[1], jsonAsBytes)								//rewrite the user status with email-id as key
+	if err != nil {
+		return nil, err
+	}
 	fmt.Println("- end signup driver")
 	return nil, nil
-}
+	}
 // ============================================================================================================================
 // Set User Permission on Marble
 // ============================================================================================================================
