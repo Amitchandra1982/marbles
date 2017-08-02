@@ -488,6 +488,7 @@ func (t *SimpleChaincode) signup_driver(stub shim.ChaincodeStubInterface, args [
 // ============================================================================================================================
 func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var err error
+	var emailid
 	
 
 	//   0       1       			2						 3
@@ -503,6 +504,7 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	bookacardropoffdate := args[7]
 	bookacardropofftime := args[8]
 	bookingid := args[9]
+	emailid = args[1]
 	
 	
 	//if err != nil {
