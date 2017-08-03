@@ -576,9 +576,8 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	 //----------------------------------------------------------------------
 	 
 	fmt.Println("- end signup driver")
-	return nil, nil
 	}
-	return nil, nil
+	return PassAsbytes, nil
 }
 // ============================================================================================================================
 // Set User Permission on Marble
