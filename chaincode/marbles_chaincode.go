@@ -556,6 +556,21 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	if err != nil {
 		return nil, err
 	}
+	//---------------------------get the driver index for Driver details
+	driversAsBytes1, err := stub.GetState(driverIndexStr)
+	if err != nil {
+		return nil, errors.New("Failed to get driver index")
+	}
+	var driverIndex1 []string
+	json.Unmarshal(driversAsBytes1, &driverIndex1)							 
+	
+	//append
+	 driverIndex1 = append(driverIndex, bookacaremail)									 
+	 fmt.Println("! driver index: ", driverIndex1)
+	 jsonAsBytes3, _ := json.Marshal(driverIndex1)
+	 err = stub.PutState(driverIndexStr, jsonAsBytes3)		
+	 //----------------------------------------------------------------------
+	
 	fmt.Println("- end signup driver")
 	return nil, nil
 	}
