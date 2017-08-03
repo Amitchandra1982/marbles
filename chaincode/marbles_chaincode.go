@@ -506,7 +506,7 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	//This function is to check the login id of Driver
 	  PassAsbytes, err := stub.GetState(bookacaremail)
 	
-	  fmt.Println("Wrong ID Password: " +bookacaremail)
+	  fmt.Println("Wrong ID Password-1: " +bookacaremail)
 	
 	  if err != nil {
 		 jsonResp := "{\"Error\":\"Failed to get state for " + bookacaremail + "\"}"
@@ -515,13 +515,13 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	
 	  res := Driver{}
 	  json.Unmarshal(PassAsbytes,&res)
-	  fmt.Println("res.Email: " +res.Email)
+	  fmt.Println("res.Email-2: " +res.Email)
 	
 	  if res.Email != bookacaremail{
-	    fmt.Println("Wrong ID Password: " +res.Email)
+	    fmt.Println("Wrong ID Password-3: " +res.Email)
 	    
 	  }else {
-	    fmt.Println("Userid Password Matched: " +res.Email)
+	    fmt.Println("Userid Password Matched-4: " +res.Email)
 	  
 	//-----------------------------------------------------------------
 	//build the Bookid json string manually
