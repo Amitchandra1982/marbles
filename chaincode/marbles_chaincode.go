@@ -565,7 +565,7 @@ func (t *SimpleChaincode) book_car(stub shim.ChaincodeStubInterface, args []stri
 	json.Unmarshal(driversAsBytes1, &driverIndex1)							 
 	
 	//append
-	 driverIndex1 = append(driverIndex, bookacaremail)									 
+	 driverIndex1 = append(driverIndex1, bookacaremail)									 
 	 fmt.Println("! driver index: ", driverIndex1)
 	 jsonAsBytes3, _ := json.Marshal(driverIndex1)
 	 err = stub.PutState(driverIndexStr, jsonAsBytes3)		
